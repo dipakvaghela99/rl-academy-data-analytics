@@ -1,0 +1,109 @@
+# Pandas Best Practices
+
+## Data Loading
+
+- Use `pd.read_csv()` for CSV files
+- Use relative paths from notebook location in `solutions/` folder
+- Consider using `encoding='utf-8'` for German characters if needed
+- Use `low_memory=False` for large files if memory allows
+- Always check data shape after loading: `df.shape` or `df.info()`
+
+Example:
+```python
+# BMW sales data
+df = pd.read_csv('../datasets/BMW-sales-data-2010-2024.csv')
+
+# News sentiment data
+df = pd.read_csv('../datasets/news-sentiment-data.csv')
+
+# Always verify the load
+print(f"Data loaded: {len(df)} rows, {len(df.columns)} columns")
+print(f"Columns: {list(df.columns)}")
+```
+
+## DataFrame Operations
+
+- Use method chaining when it improves readability
+- Prefer vectorized operations over loops
+- Use `.copy()` when creating modified versions to avoid SettingWithCopyWarning
+- Access columns using bracket notation: `df['Column_Name']`
+- Use `.loc[]` and `.iloc[]` for explicit indexing
+
+## Column Selection and Filtering
+
+- Use `df.select_dtypes(include=[np.number])` to select numeric columns
+- Use `df.select_dtypes(include=['object'])` for categorical columns
+- Filter rows using boolean indexing: `df[df['Column'] > value]`
+- Use `.query()` method for complex filtering when appropriate
+
+Example:
+```python
+numeric_cols = df.select_dtypes(include=[np.number])
+```
+
+## Groupby and Aggregation
+
+- Use `.groupby()` for grouping operations
+- Chain aggregation methods: `.agg(['mean', 'sum', 'count'])`
+- Always use `.reset_index()` after groupby operations to convert to DataFrame
+- Specify columns explicitly when aggregating: `df.groupby('Column')[['Col1', 'Col2']].agg(...)`
+
+Example:
+```python
+grouped = df.groupby(group_by_column)[agg_columns].agg(['mean', 'sum', 'count']).reset_index()
+```
+
+## Data Type Handling
+
+- Use `select_dtypes()` to filter by data types
+- Convert types explicitly when needed: `.astype()`
+- Check data types: `df.dtypes`
+- Handle missing values explicitly: `.isna()`, `.fillna()`, `.dropna()`
+
+## Common Patterns
+
+- Calculate statistics: `df.describe()` for summary statistics
+- Get unique values: `df['Column'].unique()` or `df['Column'].nunique()`
+- Count values: `df['Column'].value_counts()`
+- Sort values: `df.sort_values(by='Column', ascending=False)`
+- Reset index: `df.reset_index(drop=True)` when needed
+
+## Best Practices
+
+- Always check data shape and info after loading
+- Validate data types match expectations
+- Handle missing values explicitly
+- Use descriptive variable names for filtered/grouped DataFrames
+- Document complex transformations with comments
+- Prefer pandas methods over manual loops
+- Use `display()` to render DataFrames as tables in Jupyter
+
+## Dataset Schemas
+
+### BMW Sales Dataset
+**File:** `../datasets/BMW-sales-data-2010-2024.csv`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| Model | object | BMW model name (X3, i8, 5 Series, etc.) |
+| Year | int64 | Manufacturing year |
+| Region | object | Geographic sales region |
+| Color | object | Exterior color |
+| Fuel_Type | object | Fuel type (Benzin/Diesel/Hybrid/Elektro) |
+| Transmission | object | Transmission type |
+| Engine_Size_L | float64 | Engine volume in liters |
+| Mileage_KM | int64 | Total mileage |
+| Price_USD | int64 | Sale price in USD |
+| Sales_Volume | int64 | Units sold |
+| Sales_Classification | object | Sales category (High/Low) |
+
+### News Sentiment Dataset
+**File:** `../datasets/news-sentiment-data.csv`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| news_title | object | Original news article title |
+| reddit_title | object | Reddit discussion title |
+| sentiment | float64 | Sentiment score (-1.0 to 1.0) |
+| text | object | Full article text content |
+| url | object | URL to original source |

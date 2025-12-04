@@ -1,0 +1,72 @@
+# Python Best Practices
+
+## Code Style and Conventions
+
+- Follow PEP 8 style guidelines
+- Use 4 spaces for indentation (no tabs)
+- Maximum line length: 100 characters
+- Use descriptive variable names in snake_case
+- Use UPPER_CASE for constants
+- Use PascalCase for class names
+
+## Function Documentation
+
+- Always include docstrings for functions using triple quotes (""")
+- Docstrings should follow Google or NumPy style
+- Include:
+  - Brief description of what the function does
+  - Args: Parameter descriptions with types
+  - Returns: Return value description with types
+  - Examples: Optional usage examples
+
+Example:
+```python
+def calculate_summary_statistics(df):
+    """
+    Calculates a statistical summary for numeric columns in the DataFrame.
+    
+    Args:
+        df: A pandas DataFrame
+        
+    Returns:
+        A DataFrame with statistical summaries
+    """
+    return df.select_dtypes(include=[np.number]).describe()
+```
+
+## Error Handling
+
+- Use try-except blocks for operations that might fail (file I/O, data parsing)
+- Provide meaningful error messages
+- Log errors appropriately when needed
+- Validate inputs at function boundaries
+
+## Type Hints
+
+- Use type hints for function parameters and return values when appropriate
+- Import typing module for complex types (List, Dict, Optional, etc.)
+- Example: `def process_data(df: pd.DataFrame) -> pd.DataFrame:`
+
+## Imports
+
+- Group imports: standard library, third-party, local imports
+- Use absolute imports
+- Import only what you need
+- Keep imports at the top of the file
+- Use aliases for common libraries (pd, np, plt, sns)
+
+## Code Organization
+
+- Keep functions focused on a single task
+- Avoid deep nesting (max 3-4 levels)
+- Use helper functions to break down complex operations
+- Add comments for non-obvious logic
+- Use meaningful variable names that describe their purpose
+
+## Best Practices
+
+- Prefer list comprehensions over loops when appropriate
+- Use context managers for file operations
+- Avoid global variables; pass data as function parameters
+- Use constants for magic numbers and strings
+- Write code that is readable and maintainable

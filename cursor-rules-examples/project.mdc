@@ -1,0 +1,184 @@
+# Project-Specific Conventions
+
+## Language and Documentation
+
+- Use **English** for code comments, docstrings, and documentation
+- Use **German** for visualization labels (axes, titles)
+- Use **German** for user-facing print output messages
+- Keep code variable names in English (snake_case)
+- Function names should be descriptive English
+
+Example:
+```python
+def calculate_summary_statistics(df):
+    """
+    Calculates a statistical summary for numeric columns in the DataFrame.
+    
+    Args:
+        df: A pandas DataFrame
+        
+    Returns:
+        A DataFrame with statistical summaries
+    """
+    return df.select_dtypes(include=[np.number]).describe()
+
+# German output for user-facing messages
+print("\nAllgemeine Statistiken:")
+print(result)
+```
+
+## Project Structure
+
+```
+rl-academy-engineering/
+├── datasets/
+│   ├── BMW-sales-data-2010-2024.csv
+│   └── news-sentiment-data.csv
+├── solutions/
+│   ├── 01-statistics.ipynb
+│   ├── 02-correlation.ipynb
+│   └── 03-sentiment.ipynb
+├── exercises/
+├── cursor-rules-examples/
+├── requirements.txt
+├── .env                    # Required for OpenAI API key
+└── README.md
+```
+
+## Datasets
+
+### 1. BMW Sales Dataset (2010-2024)
+
+**File:** `../datasets/BMW-sales-data-2010-2024.csv`
+
+**Columns:**
+- `Model` - BMW Modellname (z.B. X3, i8, 5 Series)
+- `Year` - Herstellungsjahr des Fahrzeugs
+- `Region` - Geografisches Gebiet, in dem das Fahrzeug verkauft wurde
+- `Color` - Außenfarbe des Fahrzeugs
+- `Fuel_Type` - Art des verwendeten Kraftstoffs (Benzin/Diesel/Hybrid/Elektro)
+- `Transmission` - Getriebetyp (Automatik oder Schaltgetriebe)
+- `Engine_Size_L` - Motorvolumen in Litern
+- `Mileage_KM` - Gesamtkilometerstand
+- `Price_USD` - Verkaufspreis des Fahrzeugs in USD
+- `Sales_Volume` - Anzahl der in diesem Jahr verkauften Einheiten
+- `Sales_Classification` - Verkaufskategorie (Hoch oder Niedrig)
+
+**Data Types:**
+- Numeric: Year, Engine_Size_L, Mileage_KM, Price_USD, Sales_Volume
+- Categorical: Model, Region, Color, Fuel_Type, Transmission, Sales_Classification
+
+### 2. News Sentiment Dataset
+
+**File:** `../datasets/news-sentiment-data.csv`
+
+**Columns:**
+- `news_title` - Original news article title
+- `reddit_title` - Reddit discussion title for the article
+- `sentiment` - Numeric sentiment score (1.0 positive, 0.0 neutral, -1.0 negative)
+- `text` - Full article text content
+- `url` - URL to original article source
+
+## Environment Configuration
+
+For LangChain/OpenAI integration, create a `.env` file in the project root:
+
+```
+OPENAI_API_KEY=your-api-key-here
+```
+
+Load it in notebooks with:
+```python
+from dotenv import load_dotenv
+load_dotenv(override=True)
+```
+
+## LangChain Integration Patterns
+
+### Structured Output with Pydantic
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, Field
+
+class SentimentAnalysis(BaseModel):
+    sentiment: str = Field(description="The sentiment: 'positive', 'negative', or 'neutral'")
+    confidence: float = Field(description="Confidence score between 0 and 1")
+    reasoning: str = Field(description="Brief explanation for the classification")
+
+parser = PydanticOutputParser(pydantic_object=SentimentAnalysis)
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+chain = prompt_template | llm | parser
+```
+
+### Token Limit Handling
+```python
+max_text_length = 3000
+if len(text) > max_text_length:
+    text = text[:max_text_length] + "..."
+```
+
+## Helper Function Patterns
+
+### Statistical Functions
+- Functions should accept `df` as first parameter
+- Return DataFrames with clear structure
+- Include comprehensive docstrings in English
+- Use descriptive function names in English
+
+Example pattern:
+```python
+def calculate_grouped_statistics(df, group_by_column, agg_columns=None):
+    """
+    Groups data by a column and calculates aggregated statistics.
+    
+    Args:
+        df: A pandas DataFrame
+        group_by_column: Column to group by (e.g. 'Model', 'Region', 'Fuel_Type')
+        agg_columns: List of columns for aggregation (optional, uses all numeric if None)
+        
+    Returns:
+        A DataFrame with grouped statistics
+    """
+    if agg_columns is None:
+        agg_columns = df.select_dtypes(include=[np.number]).columns.tolist()
+    
+    grouped = df.groupby(group_by_column)[agg_columns].agg(['mean', 'sum', 'count']).reset_index()
+    return grouped
+```
+
+## Code Organization
+
+- Use section headers with `# ============================================`
+- Include exercise instructions in comments
+- Add tips for Cursor IDE usage when relevant
+- Structure code with clear markdown headers in notebooks
+
+Example:
+```python
+# ============================================
+# EXERCISE: Autocomplete in Cursor
+# ============================================
+# These exercises demonstrate Cursor's tab autocomplete feature
+# Tip: Start typing code and press TAB to get suggestions
+```
+
+## Analysis Patterns
+
+- Start with data loading and basic info (shape, columns)
+- Perform exploratory data analysis
+- Create visualizations with German labels
+- Print summary statistics with German headers
+- Group and aggregate data as needed
+- For NLP tasks, use LangChain with structured output
+
+## Best Practices
+
+- Always use the correct column names from the datasets
+- Validate data after loading with `df.shape` and `df.info()`
+- Use German for visualization labels and print output headers
+- Use English for code, comments, and docstrings
+- Follow the helper function patterns established in the notebooks
+- Handle API errors gracefully in LangChain code
+- Use `display()` for DataFrames, `print()` for text output

@@ -1,0 +1,224 @@
+# Jupyter Notebook Best Practices
+
+## Cell Organization
+
+- Start with a markdown cell containing the notebook title and description
+- Use markdown cells for section headers: `## Section Name`
+- Separate imports into their own code cell
+- Group related code into logical cells
+- Use markdown cells to explain what each section does
+
+Example structure:
+```markdown
+# Sentiment Analysis with LangChain
+
+This notebook demonstrates how to use LangChain with OpenAI to perform sentiment analysis.
+
+## Setup
+
+Make sure you have:
+1. Created a `.env` file with your `OPENAI_API_KEY`
+2. Installed dependencies: `pip install -r requirements.txt`
+```
+
+## Markdown Headers
+
+- Use `#` for main title
+- Use `##` for major sections (Setup, Data Loading, Analysis, etc.)
+- Use `###` for subsections
+- Keep headers descriptive in English
+- Use consistent header hierarchy
+
+## Code Cells
+
+- Keep cells focused on a single task or related operations
+- Don't make cells too long (split into multiple cells if needed)
+- Add comments within code cells for complex logic
+- Use print statements to display results
+- Execute cells in order
+- Number cells logically with comments: `# Cell 1: Import dependencies`
+
+## Documentation Structure
+
+- Include markdown cells before code sections explaining the purpose
+- Add comments within code cells for non-obvious operations
+- Document helper functions with English docstrings
+- Include setup instructions in markdown cells
+
+Example:
+```markdown
+## Data Loading and Statistics Summary
+```
+
+## Output Handling
+
+- Use `print()` statements to display results with German headers
+- Use `display()` for DataFrames (renders as tables)
+- Use `plt.show()` for all plots
+- Format output with descriptive labels
+- Use status indicators: `✓` for success, `✗` for errors
+
+Example:
+```python
+print("✓ Data loaded successfully!")
+print(f"Dataset Shape: {df.shape}")
+print("\nAllgemeine Statistiken:")
+display(df.describe())
+```
+
+## Import Organization
+
+- Group imports in the first code cell after markdown
+- Import standard libraries first, then third-party, then local
+- Set plotting styles and configurations in the same cell
+- Use consistent import aliases (pd, np, plt, sns)
+- Load environment variables early
+
+Example:
+```python
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv(override=True)
+
+# Set plotting style
+sns.set_style("whitegrid")
+plt.rcParams['figure.figsize'] = (10, 6)
+```
+
+## LangChain Integration
+
+### Setup Pattern
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, Field
+
+# Verify API key
+api_key = os.getenv("OPENAI_API_KEY")
+if api_key:
+    print("✓ OpenAI API key loaded successfully!")
+else:
+    print("✗ Error: OPENAI_API_KEY not found in .env file")
+```
+
+### Chain Definition Pattern
+```python
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+chain = prompt_template | llm | parser
+print("✓ LangChain chain configured successfully!")
+```
+
+## Interactive Widgets (ipywidgets)
+
+Use widgets for interactive data exploration:
+
+```python
+import ipywidgets as widgets
+from IPython.display import display, clear_output, HTML
+
+# Slider for selection
+slider = widgets.IntSlider(
+    value=0, min=0, max=len(df)-1,
+    description='Item #:',
+    continuous_update=False
+)
+
+# Button for action
+button = widgets.Button(
+    description='Analyze',
+    button_style='primary',
+    icon='search'
+)
+
+# Output area
+output_area = widgets.Output()
+
+def on_button_click(b):
+    with output_area:
+        clear_output(wait=True)
+        # ... processing logic ...
+
+button.on_click(on_button_click)
+display(widgets.VBox([widgets.HBox([slider, button]), output_area]))
+```
+
+## Exercise Structure
+
+- Use markdown cells to introduce exercises
+- Include instructions in code cell comments
+- Add tips for using Cursor IDE features
+- Structure exercises with clear section dividers
+
+Example:
+```python
+# ============================================
+# EXERCISE: Autocomplete in Cursor
+# ============================================
+# These exercises demonstrate Cursor's tab autocomplete
+# Tip: Start typing code and press TAB to get suggestions
+```
+
+## Best Practices
+
+- Execute cells in order from top to bottom
+- Clear outputs and restart kernel if results seem inconsistent
+- Use markdown cells to create narrative flow
+- Keep code cells executable independently when possible
+- Document assumptions and data transformations
+- Include both code and explanations
+- Use consistent formatting throughout the notebook
+- Add error handling for API calls
+
+## Visualization in Notebooks
+
+- Create plots in dedicated cells
+- Always use `plt.show()` to display plots
+- Use `plt.tight_layout()` before showing to prevent overlap
+- Print statistics alongside visualizations
+- Group related visualizations together
+
+## Data Exploration Pattern
+
+1. Markdown: Section introduction and setup instructions
+2. Code: Load environment and verify configuration
+3. Code: Load data with shape/info output
+4. Code: Explore data (shape, info, head)
+5. Code: Define helper functions
+6. Code: Create visualizations or analysis
+7. Markdown: Interpretation or next steps
+
+## Helper Functions
+
+- Define helper functions in dedicated code cells
+- Include comprehensive English docstrings
+- Test functions immediately after definition
+- Handle edge cases (text truncation, missing data)
+- Add type hints when helpful
+
+Example:
+```python
+def analyze_sentiment(title: str, text: str) -> SentimentAnalysis:
+    """
+    Analyze the sentiment of a news article using LangChain and OpenAI.
+    
+    Args:
+        title: The news article title
+        text: The full text content of the article
+        
+    Returns:
+        SentimentAnalysis object with sentiment, confidence, and reasoning
+    """
+    # Truncate text to manage token limits
+    max_text_length = 3000
+    if len(text) > max_text_length:
+        text = text[:max_text_length] + "..."
+    
+    return chain.invoke({...})
+```

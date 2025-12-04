@@ -1,0 +1,109 @@
+# Visualization Best Practices
+
+## Standard Setup
+
+- Always set seaborn style: `sns.set_style("whitegrid")`
+- Set default figure size: `plt.rcParams['figure.figsize'] = (10, 6)`
+- Import both matplotlib and seaborn with standard aliases
+- Configure styles once at the start of the notebook
+
+Example:
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set plotting style
+sns.set_style("whitegrid")
+plt.rcParams['figure.figsize'] = (10, 6)
+```
+
+## German Labels for Visualizations
+
+- Use German labels for axes and titles in visualizations
+- Keep variable names and code in English
+- Common BMW dataset translations:
+  - 'Baujahr' for Year
+  - 'Preis (USD)' for Price_USD
+  - 'Kilometerstand' for Mileage_KM
+  - 'Preisverteilung' for price distribution
+  - 'Durchschnittlicher Preis' for average price
+  - 'Motorvolumen (L)' for Engine_Size_L
+  - 'Verkaufsvolumen' for Sales_Volume
+  - 'Kraftstofftyp' for Fuel_Type
+  - 'Modell' for Model
+- Always set labels explicitly: `plt.xlabel()`, `plt.ylabel()`, `plt.title()`
+
+Example:
+```python
+plt.xlabel('Baujahr', fontsize=12)
+plt.ylabel('Preis (USD)', fontsize=12)
+plt.title('Verkaufspreis vs. Baujahr', fontsize=14, fontweight='bold')
+```
+
+## Figure and Subplot Organization
+
+- Use `plt.figure(figsize=(width, height))` for single plots
+- Use `fig, axes = plt.subplots(rows, cols, figsize=(width, height))` for multiple subplots
+- Use `plt.tight_layout()` before `plt.show()` to prevent label overlap
+- Access subplots using `axes[row, col]` or `axes[index]` for 1D arrays
+
+Example:
+```python
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+axes[0, 0].scatter(...)
+axes[0, 1].plot(...)
+plt.tight_layout()
+plt.show()
+```
+
+## Plot Types and Usage
+
+- Use `sns.scatterplot()` for scatter plots with transparency: `alpha=0.3` or `alpha=0.5`
+- Use `sns.boxplot()` for box plots to show distributions
+- Use `plt.hexbin()` for density plots with many data points
+- Use `sns.lineplot()` or `plt.plot()` for time series or trends
+- Add trend lines using `np.polyfit()` and `np.poly1d()` when appropriate
+
+Example:
+```python
+sns.scatterplot(data=df, x='Year', y='Price_USD', alpha=0.5, s=10)
+```
+
+## Styling and Formatting
+
+- Set font sizes consistently: `fontsize=12` for labels, `fontsize=14` for titles
+- Use `fontweight='bold'` for titles
+- Add grid: `plt.grid(True, alpha=0.3)` for matplotlib plots
+- Rotate x-axis labels when needed: `plt.xticks(rotation=45)`
+- Use appropriate marker sizes: `s=10` for scatter plots, `markersize=8` for line plots
+
+## Color Schemes
+
+- Use seaborn's default color palettes
+- Use `cmap='YlOrRd'` or similar for heatmaps and hexbin plots
+- Add colorbars for density plots: `plt.colorbar(label='Anzahl Fahrzeuge')`
+- Maintain consistency across related plots
+
+## Best Practices
+
+- Always show plots: `plt.show()` at the end of plotting code
+- Use `plt.tight_layout()` to prevent label overlap
+- Set appropriate alpha values for overlapping data points
+- Include descriptive titles and axis labels
+- Use German labels consistently throughout the project
+- Print summary statistics alongside visualizations when relevant
+
+## Common Patterns
+
+- Scatter plot with trend line:
+```python
+plt.scatter(x, y, alpha=0.3, s=5)
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x_sorted, p(x_sorted), "r--", alpha=0.8, linewidth=2, label='Trendlinie')
+plt.legend()
+```
+
+- Grouped analysis with multiple subplots
+- Box plots for categorical comparisons
+- Hexbin plots for large datasets to show density
